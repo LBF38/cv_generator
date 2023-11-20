@@ -59,7 +59,7 @@ export function NavigationMenuDemo() {
         <NavigationMenu className="mb-2">
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
+                    <Link href="#" legacyBehavior passHref>
                         <NavigationMenuLink>
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" />
