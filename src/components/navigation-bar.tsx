@@ -55,12 +55,12 @@ const components: { title: string; href: string; description: string }[] = [
     },
 ]
 
-export function NavigationMenuDemo() {
-    return (<div className="flex justify-between items-center">
-        <NavigationMenu className="mb-2">
+export function NavigationBar() {
+    return (<div className="flex justify-between items-center mb-2">
+        <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
+                    <Link href="/" legacyBehavior passHref>
                         <NavigationMenuLink>
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" />
@@ -119,9 +119,9 @@ export function NavigationMenuDemo() {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
+                    <Link href="/pdf" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Documentation
+                            PDF Generator
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
