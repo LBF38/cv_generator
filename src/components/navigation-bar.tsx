@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { UserIcon } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { ModeToggle } from "./mode-toggle"
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -55,7 +56,7 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export function NavigationMenuDemo() {
-    return (
+    return (<div className="flex justify-between items-center">
         <NavigationMenu className="mb-2">
             <NavigationMenuList>
                 <NavigationMenuItem>
@@ -126,6 +127,8 @@ export function NavigationMenuDemo() {
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>
+        <ModeToggle />
+    </div>
     )
 }
 
