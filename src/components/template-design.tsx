@@ -10,7 +10,7 @@ import {
     getSampleTemplate,
     getTemplateFromJsonFile,
     readFile
-} from '../lib/helper';
+} from '../lib/pdfme/helper';
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from './ui/menubar';
 
 export default function TemplateDesign() {

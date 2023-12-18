@@ -139,64 +139,6 @@ export const getTemplateFromJsonFile = (file: File) => {
     });
 };
 
-const templateFmt4SampleCode = (template: Template) =>
-    JSON.stringify(
-        Object.assign(cloneDeep(template), { columns: undefined, sampledata: undefined }),
-        null,
-        2
-    );
-
-export const getGeneratorSampleCode = (template: Template) =>
-    `import { text, image, barcodes } from "@pdfme/schemas";
-import { generate } from "@pdfme/generator";
-
-(async () => {
-  const template = ${templateFmt4SampleCode(template)};
-  const plugins = { text, image, qrcode: barcodes.qrcode };
-  const inputs = ${JSON.stringify(cloneDeep(template.sampledata), null, 2)};
-
-  const pdf = await generate({ template, plugins, inputs });
-
-  // Node.js
-  // fs.writeFileSync(path.join(__dirname, 'test.pdf'), pdf);
-
-  // Browser
-  const blob = new Blob([pdf.buffer], { type: 'application/pdf' });
-  window.open(URL.createObjectURL(blob));
-})();`.trim();
-
-export const getDesignerSampleCode = (template: Template) =>
-    `import { text, image, barcodes } from "@pdfme/schemas";
-import { Designer } from "@pdfme/ui";
-
-const domContainer = document.getElementById('container');
-const template = ${templateFmt4SampleCode(template)};
-const plugins = { text, image, qrcode: barcodes.qrcode };
-
-const designer = new Designer({ domContainer, template, plugins });`.trim();
-
-export const getFormSampleCode = (template: Template) =>
-    `import { text, image, barcodes } from "@pdfme/schemas";
-import { Form } from "@pdfme/ui";
-
-const domContainer = document.getElementById('container');
-const template = ${templateFmt4SampleCode(template)};
-const plugins = { text, image, qrcode: barcodes.qrcode };
-const inputs = ${JSON.stringify(cloneDeep(template.sampledata), null, 2)};
-
-const form = new Form({ domContainer, template, plugins, inputs });`.trim();
-
-export const getViewerSampleCode = (template: Template) =>
-    `import { text, image, barcodes } from "@pdfme/schemas";
-import { Viewer } from "@pdfme/ui";
-
-const domContainer = document.getElementById('container');
-const template = ${templateFmt4SampleCode(template)};
-const plugins = { text, image, qrcode: barcodes.qrcode };
-const inputs = ${JSON.stringify(cloneDeep(template.sampledata), null, 2)};
-
-const viewer = new Viewer({ domContainer, template, plugins });`.trim();
-
 const fonts = ['Roboto-Regular', 'PinyonScript-Regular'];
 export const getFont = () =>
     Promise.all(

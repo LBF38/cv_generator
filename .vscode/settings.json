@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "project",
         "ui",
-        "deps"
+        "deps",
+        "pdfme"
     ]
 }
