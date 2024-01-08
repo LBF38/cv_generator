@@ -1,6 +1,8 @@
 {
     "conventionalCommits.scopes": [
         "project",
-        "ui"
+        "ui",
+        "deps",
+        "pdfme"
     ]
 }
