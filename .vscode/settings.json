@@ -3,6 +3,7 @@
         "project",
         "ui",
         "deps",
-        "pdfme"
+        "pdfme",
+        "db"
     ]
 }

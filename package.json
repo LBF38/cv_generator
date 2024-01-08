@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
     "@pdfme/common": "^3.1.2",
@@ -20,9 +21,11 @@
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "drizzle-orm": "^0.29.3",
     "lucide-react": "^0.292.0",
     "next": "14.0.2",
     "next-themes": "^0.2.1",
+    "postgres": "^3.4.3",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.0.0",
@@ -33,6 +36,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "drizzle-kit": "^0.20.10",
     "eslint": "^8",
     "eslint-config-next": "14.0.2",
     "postcss": "^8",
