@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import { insertExperienceSchema } from "@/lib/db/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export default function Home() {
+    const { toast } = useToast();
     // 1. Define your form.
     const form = useForm<z.infer<typeof insertExperienceSchema>>({
         resolver: zodResolver(insertExperienceSchema),
@@ -32,14 +34,14 @@ export default function Home() {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
-        // toast({
-        //     title: "You submitted the following values:",
-        //     description: (
-        //         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        //             <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        //         </pre>
-        //     ),
-        // })
+        toast({
+            title: "You submitted the following values:",
+            description: (
+                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                    <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+                </pre>
+            ),
+        })
     }
 
     return (

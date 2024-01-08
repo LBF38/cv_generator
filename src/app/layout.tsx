@@ -1,20 +1,17 @@
+"use client";
 import { NavigationBar } from '@/components/navigation-bar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 
 export const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
-
-export const metadata: Metadata = {
-  title: 'CV/Resume Generator',
-  description: 'Display your CV/Resume in a beautiful way.',
-}
 
 export default function RootLayout({
   children,
@@ -36,6 +33,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
