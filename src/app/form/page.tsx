@@ -18,19 +18,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+const schema = z.object({
+    name: z.string().min(2).max(250),
+    age: z.number().positive(),
+})
+
 export default function Home() {
     const { toast } = useToast();
     // 1. Define your form.
-    const form = useForm<z.infer<typeof insertExperienceSchema>>({
-        resolver: zodResolver(insertExperienceSchema),
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
         defaultValues: {
-            title: "",
-            content: "",
+            // title: "",
+            // description: "",
+            // company: "",
+            // location: "",
+            // type: "",
         },
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof insertExperienceSchema>) {
+    function onSubmit(values: z.infer<typeof schema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
@@ -49,15 +57,15 @@ export default function Home() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
-                    name="title"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Titre</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="experience title" {...field} />
+                                <Input placeholder="name" {...field} />
                             </FormControl>
                             <FormDescription>
-                                The title of the experience.
+                                What is your name?
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -65,36 +73,15 @@ export default function Home() {
                 />
                 <FormField
                     control={form.control}
-                    name="description"
+                    name="age"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Description</FormLabel>
+                            <FormLabel>Age</FormLabel>
                             <FormControl>
-                                <Input placeholder="description" {...field} />
+                                <Input placeholder="age" type="number" {...field} onChange={(e) => field.onChange(parseInt(e.target.value))} />
                             </FormControl>
                             <FormDescription>
-                                The description of the experience.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="content"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Content</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    placeholder="Tell us a little bit about yourself"
-                                    className="resize-none"
-                                    {...field}
-                                    value={field.value || ""}
-                                />
-                            </FormControl>
-                            <FormDescription>
-                                You can use markdown here.
+                                What is your age?
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -102,6 +89,79 @@ export default function Home() {
                 />
                 <Button type="submit" > Submit</Button>
             </form >
-        </Form >
+        </Form>
     )
+
+    // return (
+    //     <Form {...form} >
+    //         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    //             <FormField
+    //                 control={form.control}
+    //                 name="title"
+    //                 render={({ field }) => (
+    //                     <FormItem>
+    //                         <FormLabel>Titre</FormLabel>
+    //                         <FormControl>
+    //                             <Input placeholder="experience title" {...field} />
+    //                         </FormControl>
+    //                         <FormDescription>
+    //                             The title of the experience.
+    //                         </FormDescription>
+    //                         <FormMessage />
+    //                     </FormItem>
+    //                 )}
+    //             />
+    //             <FormField
+    //                 control={form.control}
+    //                 name="description"
+    //                 render={({ field }) => (
+    //                     <FormItem>
+    //                         <FormLabel>Description</FormLabel>
+    //                         <FormControl>
+    //                             <Textarea placeholder="description" className="resize-none"
+    //                                 {...field} value={field.value || ""} />
+    //                         </FormControl>
+    //                         <FormDescription>
+    //                             The description of the experience.
+    //                         </FormDescription>
+    //                         <FormMessage />
+    //                     </FormItem>
+    //                 )}
+    //             />
+    //             <FormField
+    //                 control={form.control}
+    //                 name="company"
+    //                 render={({ field }) => (
+    //                     <FormItem>
+    //                         <FormLabel>Company</FormLabel>
+    //                         <FormControl>
+    //                             <Input placeholder="company" {...field} />
+    //                         </FormControl>
+    //                         <FormDescription>
+    //                             What is the company name?
+    //                         </FormDescription>
+    //                         <FormMessage />
+    //                     </FormItem>
+    //                 )}
+    //             />
+    //             <FormField
+    //                 control={form.control}
+    //                 name="location"
+    //                 render={({ field }) => (
+    //                     <FormItem>
+    //                         <FormLabel>Location</FormLabel>
+    //                         <FormControl>
+    //                             <Input placeholder="location" {...field} />
+    //                         </FormControl>
+    //                         <FormDescription>
+    //                             Where is the company located?
+    //                         </FormDescription>
+    //                         <FormMessage />
+    //                     </FormItem>
+    //                 )}
+    //             />
+    //             <Button type="submit" > Submit</Button>
+    //         </form >
+    //     </Form >
+    // )
 }
